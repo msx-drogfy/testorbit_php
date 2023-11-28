@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Including Chart.js -->
+<style>
+  /* Simple CSS to style the dashboard */
+  .dashboard-container {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+  }
+  .chart-container {
+    width: 45%;
+    display: inline-block;
+    margin: 10px;
+  }
+  progress[value] {
+    width: 100%;
+    height: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="dashboard-container">
+  <h1>Student Dashboard</h1>
+
+  <!-- Personal Performance Trends -->
+  <div class="chart-container">
+    <h2>Performance Trends</h2>
+    <canvas id="performanceTrendsChart"></canvas>
+  </div>
+
+  <!-- Time Management Insights -->
+  <div class="chart-container">
+    <h2>Time Management</h2>
+    <canvas id="timeManagementChart"></canvas>
+  </div>
+
+  <!-- Strengths and Weaknesses Analysis -->
+  <div class="chart-container">
+    <h2>Strengths and Weaknesses</h2>
+    <canvas id="strengthsWeaknessesChart"></canvas>
+  </div>
+
+  <!-- Completion and Engagement Metrics -->
+  <div class="chart-container">
+    <h2>Course Progress</h2>
+    <label for="html">HTML</label>
+    <progress id="html" value="80" max="100"></progress><br>
+    <label for="css">CSS</label>
+    <progress id="css" value="70" max="100"></progress><br>
+    <label for="js">JavaScript</label>
+    <progress id="js" value="60" max="100"></progress><br>
+  </div>
+
+</div>
+
+<script>
+// Performance Trends Chart
+const performanceCtx = document.getElementById('performanceTrendsChart').getContext('2d');
+const performanceTrendsChart = new Chart(performanceCtx, {
+    type: 'line',
+    data: {
+        labels: ['January', 'February', 'March', 'April'],
+        datasets: [{
+            label: 'Score',
+            data: [70, 85, 75, 90],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+// Time Management Chart
+const timeCtx = document.getElementById('timeManagementChart').getContext('2d');
+const timeManagementChart = new Chart(timeCtx, {
+    type: 'bar',
+    data: {
+        labels: ['HTML', 'CSS', 'JavaScript'],
+        datasets: [{
+            label: 'Average Time (minutes)',
+            data: [30, 25, 35],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+// Strengths and Weaknesses Chart
+const swCtx = document.getElementById('strengthsWeaknessesChart').getContext('2d');
+const strengthsWeaknessesChart = new Chart(swCtx, {
+    type: 'radar',
+    data: {
+        labels: ['HTML', 'CSS', 'JavaScript', 'Algorithms', 'Data Structures'],
+        datasets: [{
+            label: 'Skill Level',
+            data: [3, 2, 4, 5, 3],
+            fill: true,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgb(255, 99, 132)',
+            pointBackgroundColor: 'rgb(255, 99, 132)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(255, 99, 132)'
+        }]
+    },
+    options: {
+        elements: {
+            line: {
+                borderWidth: 3
+            }
+        }
+    }
+});
+</script>
+
+</body>
+</html>
